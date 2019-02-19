@@ -4,8 +4,7 @@
   "description": "'A simple console file manange'",
   "main": "index.js",
   "scripts": {
-    "build": "babel index.js -d dist",
-    "start": "npm run build && nodemon dist/index.js"
+    "start": "nodemon --exec babel-node index.js"
   },
   "repository": {
     "type": "git",
