@@ -51,7 +51,7 @@ function create(flag, [name = 'unnamed']) {
             if (err || stderr) {
                 console.log(err, stderr);
             }
-            console.log(stdout);
+            console.log(`${name} created`, stdout);
             runApp();
         });
     } else if (flag === '--folder') {
@@ -59,7 +59,7 @@ function create(flag, [name = 'unnamed']) {
             if (err || stderr) {
                 console.log(err, stderr);
             }
-            console.log(stdout);
+            console.log(`${name} created`, stdout);
             runApp();
         });
     } else {
@@ -102,10 +102,29 @@ function showDirectory(flag, [ name ]) {
     }
 }
 
-function del() {
-
-    console.log(`deleted`);
-    runApp();
+function del(flag, [ name ]) {
+    if (flag === '--file') {
+        exec(`rm output/${name}`, (err, stdout, stderr) => {
+            if (err || stderr) {
+                console.log(err, stderr);
+                runApp();
+            }
+            console.log(`${name} deleted`, stdout);
+            runApp();
+        });
+    } else if (flag === '--folder') {
+        exec(`rm -r output/${name}`, (err, stdout, stderr) => {
+            if (err || stderr) {
+                console.log(err, stderr);
+                runApp();
+            }
+            console.log(`${name} deleted`, stdout);
+            runApp();
+        });
+    } else {
+        console.log('Invalid flag, please specify a file or folder flag. See  help');
+        runApp();
+    }
 }
 
 
@@ -129,8 +148,7 @@ function runApp() {
                 showDirectory(flag, resourceNames);
                 break;
             case 'delete':
-                console.log('delete operation underway');
-                del();
+                del(flag, resourceNames);
                 break;
             case 'q':
                 console.log('bye for now...');
@@ -144,4 +162,4 @@ function runApp() {
 
 }
 
-let run = runApp();
+runApp();
