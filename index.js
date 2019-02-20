@@ -17,14 +17,17 @@ function help() {
                 - eg. create --folder newFolder
 
             show:
-                - displays output directory content
+                - displays directory or file content
+                - parameters are --file <file name> and --folder <folder name> 
+                - eg. show --file text.txt
+                - eg. show --folder newFolder 
 
             rename: 
                 - renames a file or dir depending on specified parameter
                 - parameters includes --file <file name> <new file name> 
                   and --folder <folder name> <new folder name>
                 - eg. rename --file text.txt text2.txt
-                - eg. rename --folder newFolder newFolder2
+                - eg. rename --folder Folder Folder2
 
             delete: 
                 - deletes a file or dir depending on specified parameter
@@ -41,7 +44,6 @@ function help() {
     )
     runApp();
 }
-
 
 function create(flag, [name = 'unnamed']) {
     if (flag === '--file') {
@@ -66,14 +68,38 @@ function create(flag, [name = 'unnamed']) {
     }
 }
 
-function showDirectory() {
-    exec('ls output', (err, stdout, stderr) => {
-        if (err) {
-            console.log('Error:', stderr.split(`${err.cmd}:`)[1]);
-        }
-        console.log(stdout);
+function showDirectory(flag, [ name ]) {
+    if (!flag) {
+        exec('ls output', (err, stdout, stderr) => {
+            if (err) {
+                console.log('Error:', stderr.split(`${err.cmd}:`)[1]);
+            }
+            console.log(`showing 'output' directory content >>> \n`);
+            console.log(stdout);
+            runApp();
+        });
+    } else if (flag === '--file') {
+        exec(`cat output/${name}`, (err, stdout, stderr) => {
+            if (err) {
+                console.log('Error:', err);
+            }
+            console.log(`showing '${name}' file content >>> \n`);
+            console.log(stdout);
+            runApp();
+        });
+    } else if (flag === '--folder') {
+        exec(`ls output/${name}`, (err, stdout, stderr) => {
+            if (err) {
+                console.log('Error:', err);
+            }
+            console.log(`showing '${name}' folder content >>> \n`);
+            console.log(stdout);
+            runApp();
+        });
+    } else {
+        console.log('Invalid flag, please specify a file or folder flag. See  help');
         runApp();
-    });
+    }
 }
 
 function del() {
@@ -100,7 +126,7 @@ function runApp() {
                 create(flag, resourceNames);
                 break;
             case 'show':
-                showDirectory()
+                showDirectory(flag, resourceNames);
                 break;
             case 'delete':
                 console.log('delete operation underway');
@@ -111,7 +137,7 @@ function runApp() {
                 process.exit()
                 break;
             default:
-                console.log('Invalid command');
+                console.log('Invalid command. See help');
                 runApp()
         }
     });
