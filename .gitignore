@@ -63,3 +63,5 @@ typings/
 # Dist build
 /dist
 
+# output
+/output
