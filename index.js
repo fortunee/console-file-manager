@@ -40,6 +40,7 @@ function help() {
 
             help:
                 - basically displays help/guide on how to use
+        
         `
     )
     runApp();
@@ -51,7 +52,7 @@ function create(flag, [name = 'unnamed']) {
             if (err || stderr) {
                 console.log(err, stderr);
             }
-            console.log(`${name} created`, stdout);
+            console.log(`file '${name}' created`, stdout, '\n');
             runApp();
         });
     } else if (flag === '--folder') {
@@ -59,7 +60,7 @@ function create(flag, [name = 'unnamed']) {
             if (err || stderr) {
                 console.log(err, stderr);
             }
-            console.log(`${name} created`, stdout);
+            console.log(`folder '${name}' created`, stdout, '\n');
             runApp();
         });
     } else {
@@ -151,7 +152,6 @@ function del(flag, [ name ]) {
         runApp();
     }
 }
-
 
 function runApp() {
     rl.question(`enter command or type help to see available commands: `, (input) => {
