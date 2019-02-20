@@ -5,13 +5,13 @@ import { help, create, show, rename, del } from './command';
 
 exec('mkdir output', (err, stdout, stderr) => { stderr });
 
-const rl = readline.createInterface(process.stdin, process.stdout);
+const readLine = readline.createInterface(process.stdin, process.stdout);
 
 /**
  * Application entry point
  */
 function runApp() {
-    rl.question(`enter command or type help to see available commands: `, (input) => {
+    readLine.question(`enter command or type help to see available commands: `, (input) => {
 
         let cmd = input.toLowerCase().split(' ');
         let command = cmd[0];
