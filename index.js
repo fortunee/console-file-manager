@@ -102,6 +102,31 @@ function showDirectory(flag, [ name ]) {
     }
 }
 
+function rename (flag, [ oldName, newName ]) {
+    if (flag === '--file') {
+        exec(`mv output/${oldName} output/${newName}`, (err, stdout, stderr) => {
+            if (err || stderr) {
+                console.log(err, stderr);
+                runApp();
+            }
+            console.log(`file '${oldName}' renamed to '${newName}'`, stdout);
+            runApp();
+        });
+    } else if (flag === '--folder') {
+        exec(`mv output/${oldName} output/${newName}`, (err, stdout, stderr) => {
+            if (err || stderr) {
+                console.log(err, stderr);
+                runApp();
+            }
+            console.log(`folder '${oldName} renamed to '${newName}'`, stdout);
+            runApp();
+        });
+    } else {
+        console.log('Invalid flag, please specify a file or folder flag. See  help');
+        runApp();
+    }
+}
+
 function del(flag, [ name ]) {
     if (flag === '--file') {
         exec(`rm output/${name}`, (err, stdout, stderr) => {
@@ -146,6 +171,9 @@ function runApp() {
                 break;
             case 'show':
                 showDirectory(flag, resourceNames);
+                break;
+            case 'rename':
+                rename(flag, resourceNames);
                 break;
             case 'delete':
                 del(flag, resourceNames);
