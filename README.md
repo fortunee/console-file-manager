@@ -4,6 +4,9 @@ This is a simple node.js script that provides an interactive way for users to ma
 When the application runs for the first time, a root directory called `output` is created this is where you find all the files and folders you will create when using the application.
 
 ### How to start
+- Clone project `git clone https://github.com/fortunee/console-file-manager.git`
+- Change directory into project
+- Run `npm install`
 - Run `npm start`
 
 ### Usage
