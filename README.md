@@ -16,7 +16,7 @@ When the application runs for the first time, a root directory called `output` i
 It uses parameters `--file <file name>` for creating file and `--folder <folder name>` for creating directory/folder
 
 Examples:  
-- `create --file text.txt` - _this creates a file called text.txt in the `output` directory
+- `create --file text.txt` - _this creates a file called text.txt in the `output` directory_
 
 - `create --folder newFolder` - creates a folder called newFolder withing the `output` directory
 
