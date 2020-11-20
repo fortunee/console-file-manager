@@ -10,7 +10,7 @@ const readLine = readline.createInterface(process.stdin, process.stdout);
 /**
  * Application entry point
  */
-function runApp() {
+const runApp = () => {
     readLine.question(`enter command or type help to see available commands: `, (input) => {
 
         let cmd = input.toLowerCase().split(' ');
