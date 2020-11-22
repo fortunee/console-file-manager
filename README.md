@@ -13,7 +13,7 @@ When the application runs for the first time, a root directory called `output` i
 #### To create a file|folder: 
  The `create` command basically creates a file or dir depending on specified parameter
 
-It uses parameters `--file <file name>` for creating file and `--folder <folder name>` for creating directory/folder
+It uses the flags `--file <file name>` for creating file and `--folder <folder name>` for creating directory/folder
 
 Examples:  
 - `create --file text.txt` - _this creates a file called text.txt in the `output` directory_
