@@ -25,7 +25,7 @@ The `show` command displays the content of a directory or file
 
 It uses parameters `--file <file name>` for reading the content of a file within the terminal and `--folder <folder name>` for seeing the content of the specified folder
 
-Exampls:
+Examples:
 - `show --file text.txt`- This reads the content of `text.txt` via the terminal
 
 - `show --folder newFolder` - This displays the content of the `newFolder` directory 
